@@ -16,7 +16,7 @@ or enhancement.  Please create a new pull request with your change.  Thank-you!
 
 | Git FilePath | WA Location | Known Issues | Notes |
 | :------------ | :------------ | :------------ | :------------ |
-| ExamplePath | ExampleLocation | ExampleIssues | ExampleNotes |
+| cssFiles/cssCustomization.css | Within the CSS tab under the Editor panel | - | - |
 
 # License
 

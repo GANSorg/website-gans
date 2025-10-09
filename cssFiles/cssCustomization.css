@@ -147,6 +147,10 @@ SPAN.postedByLink {
 	#id_dRjfpSd.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
+
+	.WaGadgetMenuHorizontal .menuInner ul.firstLevel > li.dir > .item > a > span:before {
+		display: none;
+	}
 }
 
 /* Mobile Landscape */
@@ -169,5 +173,9 @@ SPAN.postedByLink {
 	}
 	#id_dRjfpSd.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
+	}
+
+	.WaGadgetMenuHorizontal .menuInner ul.firstLevel > li.dir > .item > a > span:before {
+		display: none;
 	}
 }

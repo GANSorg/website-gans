@@ -132,24 +132,73 @@ SPAN.postedByLink {
 	#id_DtrqapE > div > ul > li::before {
 		content: "";
 	}
+
 	#id_DtrqapE.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
+
 	#id_4CJKtJV > div > ul > li::before {
 		content: "";
 	}
+
 	#id_4CJKtJV.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
+
 	#id_dRjfpSd > div > ul > li::before {
 		content: "";
 	}
+
 	#id_dRjfpSd.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
 
 	.WaGadgetMenuHorizontal .menuInner ul.firstLevel > li.dir > .item > a > span:before {
 		display: none;
+	}
+
+	.topLeftMenuGadget {
+		margin-bottom: 0 !important;
+		margin-left: -5px !important;
+		margin-top: 57px !important;
+		position: absolute !important;
+		z-index: 1 !important;
+	}
+
+	.topLeftMenuGadget li {
+		font-size: 15px !important;
+	}
+
+	.topLeftMenuGadget li a {
+		margin: 0 5px !important;
+	}
+
+	.topLeftMenuGadget li::before {
+		display: none !important;
+	}
+
+	.topLeftMenuGadget a {
+		color: white !important;
+	}
+
+	.loginButtonGadget {
+		height: 36px !important;
+		margin-top: -25px !important;
+		margin-bottom: 5px !important;
+	}
+
+	.loginButtonGadget .loginBoxProfileLink, .loginButtonGadget .loginBoxChangePassword, .loginButtonGadget .loginBoxLogout {
+		font-weight: bold !important;
+	}
+
+	.headerMenuGadget .menuButton {
+		width: 30px !important;
+		float: right !important;
+		padding: 13px 25px 12.5px 25px !important;
+	}
+
+	.headerMenuGadget .menuBackground {
+		height: 55px !important;
 	}
 }
 

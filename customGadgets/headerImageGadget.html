@@ -1,3 +1,60 @@
 <!-- This file can be found in all layouts, as the Custom HTML gadget at the top. It contains the header image with the satellite NS image. -->
 
-<a href="https://gans.ca"><img src="https://gans.ca/resources/images/Nova-Scotia-Geomatics-Association-Header.png" width="930" alt="" border="0"></a>
+<div id="header-image-container">
+    <a href="https://gans.ca">
+        <img src="https://gans.ca/resources/images/Nova-Scotia-Geomatics-Association-Header.png"
+             width="930"
+             alt=""
+             border="0"
+             class="desktop-image">
+        <img src="https://gans.ca/resources/Pictures/logos/GANS-logo-tagline-transparent.png"
+             width="150"
+             alt=""
+             border="0"
+             class="mobile-image">
+    </a>
+</div>
+
+<style>
+    #header-image-container {
+        text-align: -webkit-center;
+    }
+
+    .desktop-image {
+        display: block;
+    }
+
+    .mobile-image {
+        display: none;
+    }
+
+    /* Mobile Portrait */
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+        #header-image-container {
+            height: 205px;
+        }
+
+        .desktop-image {
+            display: none;
+        }
+
+        .mobile-image {
+            display: block;
+        }
+    }
+
+    /* Mobile Landscape */
+    @media only screen and (max-width: 767px) and (orientation: landscape) {
+        #header-image-container {
+            height: 205px;
+        }
+
+        .desktop-image {
+            display: none;
+        }
+
+        .mobile-image {
+            display: block;
+        }
+    }
+</style>

@@ -2,7 +2,7 @@
 
 This repository is meant to manage the source code files for the 
 [GANS](https://gans.ca) website.  Please submit all pull requests to the
-*main* branch.
+*main* branch. 
 
 # Contributions
 

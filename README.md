@@ -17,7 +17,7 @@ or enhancement.  Please create a new pull request with your change.  Thank-you!
 | Git FilePath | WA Location | Known Issues | Notes |
 | :------------ | :------------ | :------------ | :------------ |
 | cssFiles/cssCustomization.css | Within the CSS tab under the Editor panel | - | - |
-| customGadgets/footerAndSocialMediaGadget.html | Within each layout, at the bottom, black rectangle with social media buttons. | - | - |
+| customGadgets/footerAndSocialMediaGadget.html | Within each layout, at the bottom, black rectangle with social media buttons. | - | In layout 'GANS no sidebar & no sponsor logos', the top of this file is slightly different, contains link to sponsors map. |
 
 # License
 

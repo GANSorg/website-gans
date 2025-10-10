@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>GANS Sponsor Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+    <style>
+        html, body, #viewDiv {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .gans-logo {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 100px;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .esri-ui {
+            z-index: 100;
+        }
+
+        arcgis-home {
+            position: absolute;
+            top: 90px;
+            left: 15px;
+            padding: 0px 0px 0px 0px;
+            font-size: 7pt;
+            box-shadow: 0 1px 2px #0000004d;
+        }
+    </style>
+
+    <script src="https://js.arcgis.com/4.33/"></script>
+    <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
+
+    <script type="module">
+        let allSponsorData = [];
+        fetch("./gans_sponsors.csv")
+        .then(res => res.text())
+        .then(csvText => {
+            const rows = csvText.split("\n").map(row => row.split(","));
+            rows.pop(0);
+            rows.forEach(element => {
+                let sponsorData = {
+                    Sponsor:          element[0],
+                    IsActive:         element[1],
+                    SponsorshipLevel: element[2],
+                    Website:          element[3],
+                    ContactInfo:      element[4],
+                    PhoneNumber:      element[5],
+                    Latitude:         element[6],
+                    Longitude:        element[7],
+                    LogoUrl:          element[8],
+                }
+                allSponsorData.push(sponsorData);
+            });
+
+            console.log(allSponsorData);
+        });
+        const [Map, MapView] = await $arcgis.import([
+            "esri/Map",
+            "esri/views/MapView",
+        ]);
+
+        const map = new Map({
+            basemap: "gray-vector"
+        });
+
+        const view = new MapView({
+            container: "viewDiv",
+            map,
+            center: [-63.6, 44.65], 
+            zoom: 7
+        });
+
+        const homeEl = document.querySelector("arcgis-home");
+        homeEl.view = view;
+    </script>
+</head>
+<body>
+    <div id="viewDiv">
+        <arcgis-home position="top-left"></arcgis-home>
+    </div>
+</body>
+</html>

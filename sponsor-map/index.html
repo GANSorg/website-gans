@@ -34,58 +34,342 @@
             font-size: 7pt;
             box-shadow: 0 1px 2px #0000004d;
         }
+
+        .sponsor-table {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+        .sponsor-table tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+        .sponsor-table tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        .sponsor-table td {
+                padding: 5px 0px 5px 3px;
+            vertical-align: top;
+        }
+        .sponsor-table td.label {
+            width: 120px;
+        }
+
+        .sponsor-table td.dataValue {
+            font-weight: bold;
+        }
+
+        .esri-view-width-medium .esri-popup__main-container {
+            width: 400px;
+        }
+       
+        @keyframes platinumPulse {
+            0% {
+                text-shadow:
+                0 0 4px rgba(173, 216, 230, 0.6),
+                0 0 8px rgba(173, 216, 250, 0.3);
+            }
+            50% {
+                text-shadow:
+                0 0 6px rgba(173, 216, 250, 0.9),
+                0 0 12px rgba(200, 240, 255, 0.4);
+            }
+            100% {
+                text-shadow:
+                0 0 4px rgba(173, 216, 230, 0.6),
+                0 0 8px rgba(173, 216, 250, 0.3);
+            }
+        }
+
+        .geoTier { color: #996633; text-shadow: 0 0 2px rgba(153, 102, 51, 0.3); }    
+        .silverTier { color: #8c9aaa; text-shadow: 0 0 1px #d0d0d0; }
+        .goldTier { color: #e6b800; text-shadow: 0 0 1px rgba(0, 0, 0, 0.3); }
+        .platinumTier { color: #9ea7b3; 
+                        text-shadow: 
+                            0 0 4px rgba(173, 216, 230, 0.6),   
+                            0 0 8px rgba(173, 216, 250, 0.3); 
+                        animation: platinumPulse 2.5s ease-in-out infinite; 
+        } 
     </style>
 
     <script src="https://js.arcgis.com/4.33/"></script>
     <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
 
     <script type="module">
-        let allSponsorData = [];
-        fetch("./gans_sponsors.csv")
-        .then(res => res.text())
-        .then(csvText => {
-            const rows = csvText.split("\n").map(row => row.split(","));
-            rows.pop(0);
-            rows.forEach(element => {
-                let sponsorData = {
-                    Sponsor:          element[0],
-                    IsActive:         element[1],
-                    SponsorshipLevel: element[2],
-                    Website:          element[3],
-                    ContactInfo:      element[4],
-                    PhoneNumber:      element[5],
-                    Latitude:         element[6],
-                    Longitude:        element[7],
-                    LogoUrl:          element[8],
+        async function initMap() {
+            let markerSymbol = {
+                type: "simple-marker",
+                style: "circle",
+                size: 12,
+                outline: {
+                    color: "#333",
+                    width: 1.5
                 }
-                allSponsorData.push(sponsorData);
+            };
+            const geoHex = "#996633";
+            const silverHex = "#8c9aaa";
+            const goldHex = "#e6b800";
+            const platinumHex = "#a5c6ff";
+
+            let allSponsorData = [];
+
+            // Read in CSV file.            
+            function splitCSVLine(line) {
+                const result = [];
+                let inQuotes = false;
+                let value = '';
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    const next = line[i + 1];
+
+                    if (char === '"' && inQuotes && next === '"') {
+                        value += '"'; 
+                        i++; 
+                    } else if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        result.push(value);
+                        value = '';
+                    } else {
+                        value += char;
+                    }
+                }
+
+                result.push(value);
+                return result;
+            }
+
+            // Parse CSV, check for any errors.
+            function parseCSV(csvText) {
+                const lines = csvText.split("\n").map(line => line.trim()).filter(Boolean);
+
+                if (lines.length < 2) {
+                    console.warn("CSV is empty or missing headers.");
+                    return [];
+                }
+
+                const headers = lines[0].split(",").map(h => h.trim());
+                const data = [];
+
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i];
+                    
+                    const values = splitCSVLine(line);
+                    if (values.length !== headers.length) {
+                        console.warn(`Skipping malformed row at line ${i + 1}:`, line);
+                        continue;
+                    }
+
+                    const entry = {};
+                    headers.forEach((key, index) => {
+                        entry[key] = values[index].trim();
+                    });
+
+                    // Ensure lat/lon are valid.
+                    const lat = parseFloat(entry.Latitude);
+                    const lon = parseFloat(entry.Longitude);
+                    if (isNaN(lat) || isNaN(lon)) {
+                        console.warn(`Skipping row with invalid coordinates at line ${i + 1}:`, entry);
+                        continue;
+                    }
+
+                    if ((entry.IsActive || "").trim().toUpperCase() !== "Y") {
+                        continue;
+                    }
+
+                    entry.Latitude = lat;
+                    entry.Longitude = lon;
+
+                    data.push(entry);
+                }
+
+                return data;
+            }
+
+            try {
+                const res = await fetch("./gans_sponsors.csv");
+                if (!res.ok) throw new Error("Network response not ok");
+                const csvText = await res.text();
+                allSponsorData = parseCSV(csvText); 
+            } catch (err) {
+                alert("Failed to load sponsors. Please try again later.");
+                console.error("Could not load or parse CSV:", err);
+            }
+
+            const [Map, MapView, GraphicsLayer, Graphic, Point] = await $arcgis.import([
+                "esri/Map",
+                "esri/views/MapView",
+                "esri/layers/GraphicsLayer",
+                "esri/Graphic",
+                "@arcgis/core/geometry/Point.js",
+            ]);
+
+            const map = new Map({
+                basemap: "gray-vector"
             });
 
-            console.log(allSponsorData);
-        });
-        const [Map, MapView] = await $arcgis.import([
-            "esri/Map",
-            "esri/views/MapView",
-        ]);
+            const view = new MapView({
+                container: "viewDiv",
+                map,
+                center: [-63.6, 44.65], 
+                zoom: 7,
+                popup: {
+                    dockEnabled: false,
+                    dockOptions: {
+                        buttonEnabled: false,
+                        breakpoint: true     
+                    },
+                    collapseEnabled: false,
+                    visibleElements: {
+                        collapseButton: false
+                    }
+                }
+            });
 
-        const map = new Map({
-            basemap: "gray-vector"
-        });
+            const homeEl = document.querySelector("arcgis-home");
+            homeEl.view = view;
 
-        const view = new MapView({
-            container: "viewDiv",
-            map,
-            center: [-63.6, 44.65], 
-            zoom: 7
-        });
+            let sponsorsGraphicLayer = new GraphicsLayer({ title: "sponsorsGraphicsLayer" });
+            map.add(sponsorsGraphicLayer);
 
-        const homeEl = document.querySelector("arcgis-home");
-        homeEl.view = view;
+            // For each sponsor, create graphic. Note that Platinum markers will have a glowing animation.
+            allSponsorData.forEach(sponsor => {
+                let point = new Point({ latitude: sponsor.Latitude, longitude: sponsor.Longitude, spatialReference: 4326 });
+                let symbol = JSON.parse(JSON.stringify(markerSymbol));
+                
+                if (sponsor.SponsorshipLevel === "Silver") { // Silver
+                    symbol.color = silverHex;
+
+                } else if (sponsor.SponsorshipLevel === "Gold" ) { // Gold
+                    symbol.color = goldHex;
+                } else if (sponsor.SponsorshipLevel === "Platinum" ) { // Platinum
+                    symbol.color = platinumHex;
+                } else { // Geo
+                    symbol.color = geoHex;
+                }
+
+                if (sponsor.SponsorshipLevel === "Platinum") {
+                    let pulse = 0;
+                    let direction = 1;
+
+                    const baseSymbol = {
+                        type: "simple-marker",
+                        style: "circle",
+                        size: 12,
+                        color: "#a5c6ff",  
+                        outline: {
+                            color: "black",
+                            width: 1.5
+                        }
+                    };
+
+                    const glowSymbol = {
+                        type: "simple-marker",
+                        style: "circle",
+                        size: 18,  
+                        color: "transparent",  // Just outline
+                        outline: {
+                            color: `rgba(173, 216, 255, 0.4)`,  
+                            width: 4
+                        }
+                    };
+
+                    const baseGraphic = new Graphic({
+                        geometry: point,
+                        symbol: baseSymbol,
+                        attributes: sponsor,
+                        popupTemplate: {
+                            title: sponsor.Sponsor,
+                            content: createPopupContent
+                        }
+                    });
+
+                    const glowGraphic = new Graphic({
+                        geometry: point,
+                        symbol: glowSymbol
+                    });
+
+                    // Add both to map
+                    sponsorsGraphicLayer.addMany([glowGraphic, baseGraphic]);
+
+                    setInterval(() => {
+                        pulse += direction * 0.1;
+
+                        if (pulse >= 1) direction = -1;
+                        if (pulse <= 0) direction = 1;
+
+                        const glowOpacity = 0.3 + pulse * 0.4;  
+                        const outlineWidth = 0.5 + pulse * 2;   
+
+                        // Directly update the existing graphic's symbol
+                        glowGraphic.symbol = {
+                            ...glowSymbol,
+                            outline: {
+                                ...glowSymbol.outline,
+                                color: `rgba(173, 216, 255, ${glowOpacity})`,
+                                width: outlineWidth
+                            }
+                        };
+                    }, 100);
+                } else {   
+                    let graphic = new Graphic({
+                        geometry: point,
+                        symbol: symbol,
+                        attributes: sponsor,
+                        popupTemplate: {
+                            title: sponsor.Sponsor,
+                            content: createPopupContent
+                        }
+                    });
+                    sponsorsGraphicLayer.add(graphic);
+                }        
+            });  
+
+            // Create popup for the sponsor. Assign class based on sponsorship tier.
+            function createPopupContent(graphic) {
+                let sponsor = graphic.graphic.attributes;
+
+                const sponsorshipTierClass = {
+                    Geo: "geoTier",
+                    Silver: "silverTier",
+                    Gold: "goldTier",
+                    Platinum: "platinumTier"
+                }[sponsor.SponsorshipLevel] || "geoTier";
+                
+                return `
+                    <table class="sponsor-table">
+                        <tr>
+                            <td class="label">Sponsorship Tier</td>
+                            <td class="dataValue ${sponsorshipTierClass}">${sponsor.SponsorshipLevel || '—'}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Website</td>
+                            <td class="dataValue"><a href="${sponsor.Website}" target="_blank">${sponsor.Website}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Contact Info</td>
+                            <td class="dataValue">${sponsor.ContactInfo || '—'}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Phone Number</td>
+                            <td class="dataValue">${sponsor.PhoneNumber || '—'}</td>
+                        </tr>
+                    </table>     
+                    <div style="text-align: center; margin-top:15px"><img src="${sponsor.LogoUrl}" alt="${sponsor.Sponsor} logo" style="max-height:80px;"  onerror="this.style.display='none';"/></div>              
+                `;
+            }          
+        }
+
+        initMap();
+
     </script>
 </head>
 <body>
     <div id="viewDiv">
         <arcgis-home position="top-left"></arcgis-home>
+        <img src="https://gans.ca/resources/Pictures/logos/GANS-logo-tagline-transparent.png" alt="GANS Logo" class="gans-logo" />
     </div>
 </body>
 </html>

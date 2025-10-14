@@ -1,0 +1,301 @@
+html, body, #viewDiv {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.gans-logo {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 100px;
+    opacity: 0.8;
+    z-index: 10;    
+    transform: scale(1);
+    transition: all 0.2s ease-in-out;
+}
+
+.gans-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.esri-ui {
+    z-index: 100;
+}
+
+arcgis-home {
+    position: absolute;
+    top: 90px;
+    left: 15px;
+    padding: 0px 0px 0px 0px;
+    font-size: 7pt;
+    box-shadow: 0 1px 2px #0000004d;
+}
+
+#sponsorListButton {
+    top: 130px;
+}
+
+#legendButton {
+    top: 170px;
+}
+
+.customButton {
+    color: gray;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: white;
+    left: 15px;
+    padding: 0px 0px 0px 0px;
+    font-size: 7pt;
+    box-shadow: 0 1px 2px #0000004d;
+    --esri-view-outline-color: var(--calcite-color-brand);
+    --esri-view-outline: 2px solid var(--esri-view-outline-color);
+    --esri-view-outline-offset: -2px;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+}
+
+.customButton:hover {
+    background-color: var(--calcite-color-border-3);
+}
+
+.customButton:active {
+    border: 2px solid #4978BC;
+}
+
+.enabled {
+    background-color: var(--calcite-color-border-3) !important;
+}
+
+#legendPanel {
+    display: none;
+    position: absolute;
+    top: auto;
+    bottom: 25px;
+    left: 15px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    padding: 0px 10px 10px 10px;
+    font-family: sans-serif;
+    font-size: 12px;
+    z-index: 98;
+}
+
+.tierSpan {
+    border: 2px solid #333; 
+    width:12px; 
+    height:12px; display:inline-block; 
+    border-radius:50%; 
+    margin-right:6px;
+    vertical-align: middle;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.glowWrapper {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    vertical-align: middle;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.glowPulseRing {
+    position: absolute;
+    top: 3px;
+    left: -0.5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 3px solid rgba(173, 216, 255, 0.6);
+    box-shadow: 0 0 6px rgba(173, 216, 255, 0.3);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+.glowInnerDot {
+    position: absolute;
+    top: 3.5px;
+    left: 0px;
+    width: 12px;
+    height: 12px;
+    background-color: #a5c6ff;
+    border: 2px solid #333;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+@keyframes glowPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+        box-shadow: 0 0 8px rgba(173, 216, 255, 0.3);
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 0.9;
+        box-shadow: 0 0 14px rgba(173, 216, 255, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+        box-shadow: 0 0 8px rgba(173, 216, 255, 0.3);
+    }
+}
+
+.sponsor-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+.sponsor-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+.sponsor-table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+.sponsor-table th,
+.sponsor-table td {
+    padding: 5px 0px 5px 3px;
+    vertical-align: top;
+    font-weight: normal;
+    text-align: left;
+}
+
+.sponsor-table th.label {
+    width: 120px;
+    font-weight: normal;
+}
+
+.sponsor-table td.dataValue {
+    font-weight: bold;
+}
+
+.esri-view-width-medium .esri-popup__main-container {
+    width: 400px;
+}
+
+@keyframes platinumPulse {
+    0% {
+        text-shadow:
+        0 0 4px rgba(173, 216, 230, 0.6),
+        0 0 8px rgba(173, 216, 250, 0.3);
+    }
+    50% {
+        text-shadow:
+        0 0 6px rgba(173, 216, 250, 0.9),
+        0 0 12px rgba(200, 240, 255, 0.4);
+    }
+    100% {
+        text-shadow:
+        0 0 4px rgba(173, 216, 230, 0.6),
+        0 0 8px rgba(173, 216, 250, 0.3);
+    }
+}
+
+.geoTier { color: #996633; text-shadow: 0 0 2px rgba(153, 102, 51, 0.3); }    
+.silverTier { color: #8c9aaa; text-shadow: 0 0 1px #d0d0d0; }
+.goldTier { color: #e6b800; text-shadow: 0 0 1px rgba(0, 0, 0, 0.3); }
+.platinumTier { color: #9ea7b3; 
+                text-shadow: 
+                    0 0 4px rgba(173, 216, 230, 0.6),   
+                    0 0 8px rgba(173, 216, 250, 0.3); 
+                animation: platinumPulse 2.5s ease-in-out infinite; 
+} 
+
+.sponsor-sidebar {
+    position: fixed;
+    overflow-x: hidden;
+    top: 0;
+    right: 0;
+    width: 400px;
+    max-width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    flex-direction: column;
+    font-family: sans-serif;
+    border-left: 1px solid #ddd;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex; 
+    visibility: hidden; 
+    pointer-events: none;
+}
+
+.sponsor-sidebar.active {
+    transform: translateX(0%);
+    visibility: visible; 
+    pointer-events: auto; 
+}
+
+.sponsor-sidebar.animating-out {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .sponsor-sidebar {
+        width: 100%;
+    }
+}
+
+.sponsor-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.sponsor-sidebar-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.sponsor-list-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px;
+    flex: 1;
+}
+
+.sponsor-entry {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.sponsor-entry h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.zoom-to-button {
+    cursor: pointer;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    border: 2px solid gray;
+}

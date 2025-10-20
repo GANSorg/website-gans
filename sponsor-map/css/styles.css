@@ -317,7 +317,6 @@ arcgis-home {
     width: 90%;
     padding: 0;
     font-family: sans-serif;
-    pointer-events: none;
     transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 

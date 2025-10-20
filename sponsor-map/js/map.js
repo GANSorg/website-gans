@@ -27,6 +27,8 @@ const silverHex = "#8c9aaa";
 const goldHex = "#e6b800";
 const platinumHex = "#a5c6ff";
 
+let sponsorsGraphicLayer;
+
 function generateTableFromSponsor(sponsor) {
     const sponsorshipTierClass = {
         Geo: "geoTier",
@@ -90,6 +92,7 @@ function loadSponsorsList() {
             });
 
             if (isMobileView()) {
+                let sponsorCloseButton = document.getElementById("closeSponsorList");
                 sponsorCloseButton.click();
             }
         }
@@ -115,7 +118,7 @@ let lastHoveredGraphic = null;
 // Change outline on hover
 function changeMarkerOutlineOnHover() {
     view.on("pointer-move", function(event) {
-        view.hitTest(event).then(function(response) {
+        view.hitTest(event).then(function (response) {
             const hitGraphic = response.results.find(result =>
                 result.graphic.layer === sponsorsGraphicLayer &&
                 result.graphic.attributes 
@@ -154,7 +157,7 @@ function changeMarkerOutlineOnHover() {
     });
 }
 
-let view, sponsorsGraphicLayer;
+let view;
 let allSponsorData;
 
 async function initializeMap(data) {
@@ -192,7 +195,7 @@ async function initializeMap(data) {
     const homeEl = document.querySelector("arcgis-home");
     homeEl.view = view;
 
-    let sponsorsGraphicLayer = new GraphicsLayer({ title: "sponsorsGraphicsLayer" });
+    sponsorsGraphicLayer = new GraphicsLayer({ title: "sponsorsGraphicsLayer" });
     map.add(sponsorsGraphicLayer);
     let sponsorsLabelGraphicLayer = new GraphicsLayer({ title: "sponsorsLabelGraphicLayer", minScale: 100000 });
     map.add(sponsorsLabelGraphicLayer);

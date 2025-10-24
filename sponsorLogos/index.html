@@ -14,7 +14,7 @@
     }
 
     .sponsor-tier {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .sponsor-tier-title {
@@ -23,11 +23,30 @@
         font-weight: 600;
         margin-bottom: 1rem;
         color: #222;
-        border-left: 6px solid #0072bc;
+        border-left: 6px solid;
         padding-left: 10px;
         text-transform: uppercase;
         letter-spacing: 0.04em;
     }
+
+    .sponsor-tier-title.geo-tier {
+        border-color: #996633;
+    }
+
+    .sponsor-tier-title.silver-tier {
+        border-color: #8c9aaa;
+    }
+
+
+    .sponsor-tier-title.gold-tier {
+        border-color: #e6b800;
+    }
+
+
+    .sponsor-tier-title.platinum-tier {
+        border-color: #a5c6ff;
+    }
+
 
     .sponsor-logo {
         text-align: center;
@@ -53,7 +72,6 @@
         max-height: 70px;
         max-width: 100%;
         object-fit: contain;
-        filter: grayscale(50%);
         transition: filter 0.3s ease;
     }
 
@@ -76,26 +94,26 @@
     <div class="container section-sponsors">
         <!-- Platinum Tier -->
         <div class="sponsor-tier">
-            <h2 class="sponsor-tier-title" aria-label="Platinum Sponsors">Platinum Sponsors</h2>
-            <div class="d-flex flex-wrap justify-content-center gap-4">
+            <h2 class="sponsor-tier-title platinum-tier" aria-label="Platinum Sponsors">Platinum Sponsors</h2>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="Esri Canada" aria-label="Esri Canada">
                         <a href="https://www.esri.ca" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-esri-canada.jpg" alt="Esri Canada" aria-hidden="true">
+                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-esri-canada.jpg" alt="Esri Canada" loading="lazy">
                         </a>
                     </div>
                 </div>
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="Halifax Water" aria-label="Halifax Water">
                         <a href="https://www.halifaxwater.ca" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-halifax-water.jpg" alt="Halifax Water" aria-hidden="true">
+                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-halifax-water.jpg" alt="Halifax Water" loading="lazy">
                         </a>
                     </div>
                 </div>
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="Province of Nova Scotia" aria-label="Province of Nova Scotia">
                         <a href="https://novascotia.ca/sns/" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-service-nova-scotia-and-municipal-relations.jpg" alt="Province of Nova Scotia" aria-hidden="true">
+                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-service-nova-scotia-and-municipal-relations.jpg" alt="Province of Nova Scotia" loading="lazy">
                         </a>
                     </div>
                 </div>
@@ -105,12 +123,12 @@
         <!-- Gold Tier -->
         <!-- Commented out until we have gold sponsors -->
         <!-- <div class="sponsor-tier">
-            <h2 class="sponsor-tier-title" aria-label="Gold Sponsors">Gold Sponsors</h2>
-            <div class="d-flex flex-wrap justify-content-center gap-4">
+            <h2 class="sponsor-tier-title gold-tier" aria-label="Gold Sponsors">Gold Sponsors</h2>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="" aria-label="">                        
                         <a href="" target="_blank" rel="noopener noreferrer">
-                            <img src="" alt="" aria-hidden="true">
+                            <img src="" alt="" loading="lazy">
                         </a>
                     </div>
                 </div>
@@ -119,33 +137,33 @@
 
         <!-- Silver Tier -->
         <div class="sponsor-tier">
-            <h2 class="sponsor-tier-title" aria-label="Silver Sponsors">Silver Sponsors</h2>
-            <div class="d-flex flex-wrap justify-content-center gap-4">
+            <h2 class="sponsor-tier-title silver-tier" aria-label="Silver Sponsors">Silver Sponsors</h2>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="COGS" aria-label="COGS">
                         <a href="https://nscc.ca/COGS" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-cogs-centre-of-geographic-sciences.jpg" alt="COGS" aria-hidden="true">
+                            <img src="https://gans.ca/Resources/images/sponsor-logos/logo-275x150-cogs-centre-of-geographic-sciences.jpg" alt="COGS" loading="lazy">
                         </a>
                     </div>
                 </div>
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="Gateway Geo" aria-label="Gateway Geo">
                         <a href="https://www.gatewaygeomatics.com/" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/resources/Pictures/logos/logo-275x150-GatewayGeoFeb2021.png" alt="Gateway Geo" aria-hidden="true">
+                            <img src="https://gans.ca/resources/Pictures/logos/logo-275x150-GatewayGeoFeb2021.png" alt="Gateway Geo" loading="lazy">
                         </a>
                     </div>
                 </div>
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="Turner Drake & Partners Ltd." aria-label="Turner Drake & Partners Ltd.">
                         <a href="https://www.turnerdrake.com/" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/resources/images/sponsor-logos/logo-Turner-Drake.jpg" alt="Turner Drake & Partners Ltd." aria-hidden="true">
+                            <img src="https://gans.ca/resources/images/sponsor-logos/logo-Turner-Drake.jpg" alt="Turner Drake & Partners Ltd." loading="lazy">
                         </a>
                     </div>
                 </div>
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="MapDev Technology Solutions, Inc." aria-label="MapDev Technology Solutions, Inc.">
                         <a href="https://www.mapdev.ca" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/resources/images/sponsor-logos/MapDev_logoJul2021_275x150.jpg" alt="MapDev Technology Solutions, Inc." aria-hidden="true">
+                            <img src="https://gans.ca/resources/images/sponsor-logos/MapDev_logoJul2021_275x150.jpg" alt="MapDev Technology Solutions, Inc." loading="lazy">
                         </a>
                     </div>
                 </div>
@@ -154,19 +172,19 @@
 
         <!-- Geo Tier -->
         <div class="sponsor-tier">
-            <h2 class="sponsor-tier-title" aria-label="Geo Sponsors">Geo Sponsors</h2>
-            <div class="d-flex flex-wrap justify-content-center gap-4">
+            <h2 class="sponsor-tier-title geo-tier" aria-label="Geo Sponsors">Geo Sponsors</h2>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
                 <div class="sponsor-logo-wrapper">
                     <div class="sponsor-logo" title="CBCL" aria-label="CBCL">
                         <a href="https://www.cbcl.ca" target="_blank" rel="noopener noreferrer">
-                            <img src="https://gans.ca/resources/images/sponsor-logos/CBCL_Logo_BLK_Jul2021_275x150.jpg" alt="CBCL" aria-hidden="true">
+                            <img src="https://gans.ca/resources/images/sponsor-logos/CBCL_Logo_BLK_Jul2021_275x150.jpg" alt="CBCL" loading="lazy">
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="mt-5 mx-auto text-center" id="sponsorAboutSection">
+        <div class="mt-4 mx-auto text-center" id="sponsorAboutSection">
             <p>The Geomatics Association of Nova Scotia uses a tiered level sponsorship program.</p>
             <p>All levels of sponsorship help generate revenue necessary for the Association to operate but provide different benefits back to the company or organization in return for their generous support.</p>
             <p><a href="https://gans.ca/GANS-sponsors">Click here</a> for more details on the different GANS sponsor levels and how you can become a GANS sponsor.</p>

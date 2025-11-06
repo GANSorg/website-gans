@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <title>GANS Sponsor Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.34/esri/themes/light/main.css" />
     <link rel="stylesheet" href="./css/styles.css" />
 
-    <script src="https://js.arcgis.com/4.33/"></script>
-    <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
+    <script src="https://js.arcgis.com/4.34/"></script>
+    <script type="module" src="https://js.arcgis.com/4.34/map-components/"></script>
 
     <script type="module" src="./js/main.js"></script>
 </head>
 <body>
     <div id="viewDiv">
+        <button id="fullScreenButton" class="esri-icon-zoom-out-fixed customButton" title="Toggle Fullscreen" aria-label="About" type="button"></button>
         <arcgis-home position="top-left"></arcgis-home>
         <button id="sponsorListButton" class="customButton" title="Toggle Sponsors List" aria-label="Toggle Sponsors List" type="button">
             <calcite-icon icon="partner" aria-hidden="true"/>
@@ -22,20 +23,55 @@
 
         <div id="legendPanel">
             <h4 style="margin-bottom: 10px;" aria-label="Sponsorship Tiers">Sponsorship Tiers</h4>
-            <ul style="list-style:none; margin:0; padding:0;">
-                <li style="display: flex; align-items: center;">
-                    <span class="glowWrapper">
-                        <span class="glowPulseRing"></span>
-                        <span class="glowInnerDot"></span>
-                    </span>
-                    <span style="position: relative; top: 1px; left: 2px;" aria-label="Platinum">Platinum</span>
-                </li>
-                <li><span class="tierSpan" style="background-color:#e6b800;" aria-label="Gold"></span> Gold</li>
-                <li><span class="tierSpan" style="background-color:#8c9aaa;" aria-label="Silver"></span> Silver</li>
-                <li><span class="tierSpan" style="background-color:#996633;" aria-label="Geo"></span> Geo</li>
-            </ul>
+            <table style="border-collapse: collapse;">
+                <tr>
+                    <td>
+                        <span class="glowWrapper">
+                            <span class="glowPulseRing"></span>
+                            <span class="glowInnerDot"></span>
+                        </span>
+                    </td>
+                    <td>
+                        <div class="tierRow">
+                            <span>Platinum</span>
+                            <b id="platinumCountIndicator">(0)</b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="tierSpan" style="background-color:#e6b800;" aria-label="Gold"></span></td>
+                    <td>
+                        <div class="tierRow">
+                            <span>Gold</span>
+                            <b id="goldCountIndicator">(0)</b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="tierSpan" style="background-color:#8c9aaa;" aria-label="Silver"></span>
+                    </td>
+                    <td>
+                        <div class="tierRow">
+                            <span>Silver</span>
+                            <b id="silverCountIndicator">(0)</b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="tierSpan" style="background-color:#996633;" aria-label="Geo"></span>
+                    </td>
+                    <td>
+                        <div class="tierRow">
+                            <span>Geo</span>
+                            <b id="geoCountIndicator">(0)</b>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <button id="helpButton" class="esri-icon-question  customButton" title="About" aria-label="About" type="button"></button>
+        <button id="helpButton" class="esri-icon-question customButton" title="About" aria-label="About" type="button"></button>
 
         <div id="sponsorSidebar" class="sponsor-sidebar" role="dialog" aria-modal="true" aria-labelledby="sponsorSidebarTitle" hidden>
             <div class="sponsor-sidebar-header">
@@ -56,11 +92,12 @@
             <div class="help-dialog-content">
                 <p>This interactive map displays the corporate sponsors of the Geomatics Association of Nova Scotia (GANS) and their geographic locations.</p>
                 
-                <p><strong>Click a pin</strong> to view sponsor details, including contact information, website link, and company logo.</p>
+                <p><strong>Click a pin</strong> to view sponsor details, including contact information, website link, and logo.</p>
                 <p><strong>Pan the map</strong> by clicking and dragging (or swiping on mobile).</p>      
-                <p><strong>Zoom</strong> with +/- buttons, mouse scroll, or pinch gesture.</p>    
-                <p><strong>Sponsor List button</strong> opens a sidebar with a tier-sorted list of all sponsors.</p>         
+                <p><strong>Zoom</strong> with +/- buttons, mouse scroll, or pinch gesture.</p>       
+                <p><strong>Full screen button</strong> toggles the map to fill the screen.</p>    
                 <p><strong>Home button</strong> resets the map to its default view, centered on Nova Scotia.</p>
+                <p><strong>Sponsor List button</strong> opens a sidebar with a tier-sorted list of all sponsors.</p>  
                 <p><strong>Legend button</strong> displays the sponsorship tier colour key.</p>
 
                 <span>Map Design: October 2025</span><br/>              

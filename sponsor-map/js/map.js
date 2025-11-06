@@ -19,7 +19,9 @@ let defaultLabelSymbol = {
         size: 10,
         weight: "bold"
     },
-    yoffset: 12 
+    yoffset: 12,
+    horizontalAlignment: "center",
+    verticalAlignment: "bottom",
 }
 
 const geoHex = "#996633";
@@ -28,6 +30,26 @@ const goldHex = "#e6b800";
 const platinumHex = "#a5c6ff";
 
 let sponsorsGraphicLayer;
+
+function wrapText(text, maxLength = 10) {
+    if (!text) return "";
+    if (text.length <= maxLength) return text;
+    const words = text.split(" ");
+    let lines = [];
+    let currentLine = "";
+
+    for (let word of words) {
+        if ((currentLine + word).length <= maxLength) {
+            currentLine += (currentLine ? " " : "") + word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    if (currentLine) lines.push(currentLine);
+
+    return lines.join("\n");
+}
 
 function generateTableFromSponsor(sponsor) {
     const sponsorshipTierClass = {
@@ -162,12 +184,13 @@ let allSponsorData;
 
 async function initializeMap(data) {
     allSponsorData = data;
-    const [Map, MapView, GraphicsLayer, Graphic, Point] = await $arcgis.import([
+    const [Map, MapView, GraphicsLayer, Graphic, Point, reactiveUtils ] = await $arcgis.import([
         "esri/Map",
         "esri/views/MapView",
         "esri/layers/GraphicsLayer",
         "esri/Graphic",
         "@arcgis/core/geometry/Point.js",
+        "@arcgis/core/core/reactiveUtils.js"
     ]);
 
     const map = new Map({
@@ -197,22 +220,81 @@ async function initializeMap(data) {
 
     sponsorsGraphicLayer = new GraphicsLayer({ title: "sponsorsGraphicsLayer" });
     map.add(sponsorsGraphicLayer);
-    let sponsorsLabelGraphicLayer = new GraphicsLayer({ title: "sponsorsLabelGraphicLayer", minScale: 100000 });
+    let sponsorsLabelGraphicLayer = new GraphicsLayer({ title: "sponsorsLabelGraphicLayer", minScale: 75000 });
     map.add(sponsorsLabelGraphicLayer);
+
+    reactiveUtils.watch(() => view.scale, (newScale) => {
+        sponsorsLabelGraphicLayer.graphics.forEach(graphic => {
+            if (graphic._maxScale) {
+                const min = graphic._minScale ?? 0;
+                const max = graphic._maxScale ?? Infinity;
+                graphic.visible = (newScale <= max && newScale >= min);
+            }
+        });
+    });
 
     // For each sponsor, create graphic. Note that Platinum markers will have a glowing animation.
     allSponsorData.forEach(sponsor => {
         let point = new Point({ latitude: sponsor.Latitude, longitude: sponsor.Longitude, spatialReference: 4326 });
         
         // Label symbol
-        let labelSymbol = JSON.parse(JSON.stringify(defaultLabelSymbol));
-        labelSymbol.text = sponsor.Sponsor;
+        if (sponsor.Sponsor === "Service Nova Scotia") {
+            let labelSymbol = JSON.parse(JSON.stringify(defaultLabelSymbol));
 
-        const labelGraphic = new Graphic({
-            geometry: point,
-            symbol: labelSymbol,    
-        });
-        sponsorsLabelGraphicLayer.add(labelGraphic);
+            let graphic1 = new Graphic({
+                geometry: point,
+                symbol: { ...labelSymbol, text: sponsor.Sponsor, yoffset: -3,xoffset: 60 }
+            });
+            graphic1._minScale = 5000;
+            graphic1._maxScale = 75000;
+
+            let graphic3 = new Graphic({
+                geometry: point,
+                symbol: { ...labelSymbol, text: wrapText(sponsor.Sponsor, 12), yoffset: 12, }
+            });
+            graphic3._minScale = 0;
+            graphic3._maxScale = 5000;
+
+            sponsorsLabelGraphicLayer.add(graphic1);
+            sponsorsLabelGraphicLayer.add(graphic3);
+        } else if (sponsor.Sponsor === "CBCL Limited") {
+            let labelSymbol = JSON.parse(JSON.stringify(defaultLabelSymbol));
+            labelSymbol.text = wrapText(sponsor.Sponsor, 12);
+
+            let graphic1 = new Graphic({
+                geometry: point,
+                symbol: { ...labelSymbol, text: sponsor.Sponsor, yoffset: 20,xoffset: 45 }
+            });
+            graphic1._minScale = 25000;
+            graphic1._maxScale = 75000;            
+
+            let graphic2 = new Graphic({
+                geometry: point,
+                symbol: { ...labelSymbol, text: sponsor.Sponsor, yoffset: 15,xoffset: 0 }
+            });
+            graphic2._minScale = 5000;
+            graphic2._maxScale = 25000;
+
+            let graphic3 = new Graphic({
+                geometry: point,
+                symbol: { ...labelSymbol, text: wrapText(sponsor.Sponsor, 12), yoffset: 12, }
+            });
+            graphic3._minScale = 0;
+            graphic3._maxScale = 5000;
+
+            sponsorsLabelGraphicLayer.add(graphic1);
+            sponsorsLabelGraphicLayer.add(graphic2);
+            sponsorsLabelGraphicLayer.add(graphic3);
+        } else {
+            let labelSymbol = JSON.parse(JSON.stringify(defaultLabelSymbol));
+            labelSymbol.text = wrapText(sponsor.Sponsor, 12);
+
+            const labelGraphic = new Graphic({
+                geometry: point,
+                symbol: labelSymbol,    
+            });
+            sponsorsLabelGraphicLayer.add(labelGraphic);
+        }
 
         // Marker symbol
         let symbol = JSON.parse(JSON.stringify(markerSymbol));
@@ -303,7 +385,7 @@ function animateGlowRing(glowGraphic) {
     const baseOpacity = 0.3;
     const baseWidth = 0.5;
     const amplitudeOpacity = 0.4;
-    const amplitudeWidth = 2;
+    const amplitudeWidth = 6;
 
     function step(timestamp) {
         if (!lastTime) lastTime = timestamp;

@@ -1,8 +1,46 @@
 let isLegendEnabled = false;
 let isSponsorSidebarEnabled = false;
 let isHelpDialogEnabled = false;
+let isFullScreen = false;
 let legendPanel, sponsorSidebar, helpDialog;
-let legendButton, sponsorListButton, sponsorCloseButton, helpButton, helpCloseButton;
+let fullScreenButton, legendButton, sponsorListButton, sponsorCloseButton, helpButton, helpCloseButton;
+
+function fullScreenButtonOnClick() {
+    isFullScreen = !isFullScreen;
+
+    if (isFullScreen) {        
+        fullScreenButton.classList.remove("esri-icon-zoom-out-fixed");
+        fullScreenButton.classList.add("esri-icon-zoom-in-fixed");
+        makeIframeFullscreen();
+    } else {
+        fullScreenButton.classList.add("esri-icon-zoom-out-fixed");
+        fullScreenButton.classList.remove("esri-icon-zoom-in-fixed");
+
+        exitIframeFullscreen();
+    }
+}
+
+function makeIframeFullscreen() {
+    const iframe = window.frameElement;
+
+    if (iframe) {
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) { 
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.mozRequestFullScreen) {
+            iframe.mozRequestFullScreen();
+        } else if (iframe.msRequestFullscreen) {
+            iframe.msRequestFullscreen();
+        } else {
+            alert("Could not expand.");
+        }
+    }
+}
+
+function exitIframeFullscreen() {
+    window.parent.postMessage({ action: 'exit-fullscreen' }, '*');
+}
 
 function legendButtonOnClick() {
     isLegendEnabled = !isLegendEnabled;
@@ -47,8 +85,42 @@ function helpButtonOnClick() {
         helpDialog.style.display = "none";
     }
 }
+
+function updateLegendTierCounts(sponsorData) {
+    let platinumCount = 0;
+    let goldCount = 0;
+    let silverCount = 0;
+    let geoCount = 0;
+
+    let platinumCountIndicator = document.getElementById("platinumCountIndicator");
+    let goldCountIndicator = document.getElementById("goldCountIndicator");
+    let silverCountIndicator = document.getElementById("silverCountIndicator");
+    let geoCountIndicator = document.getElementById("geoCountIndicator");
+
+    sponsorData.forEach(element => {
+        let tier = element.SponsorshipLevel;
+
+        if (tier === "Platinum") {
+            platinumCount++;            
+        } else if (tier === "Gold") {
+            goldCount++;   
+        } else if (tier === "Silver") {
+            silverCount++;     
+        } else if (tier === "Geo") {
+            geoCount++;     
+        }
+    });
+
+    platinumCountIndicator.innerText = `(${platinumCount})`;
+    goldCountIndicator.innerText = `(${goldCount})`;
+    silverCountIndicator.innerText = `(${silverCount})`;
+    geoCountIndicator.innerText = `(${geoCount})`;
+}
     
-function initUI(lastModifiedFormatted) {
+function initUI(lastModifiedFormatted, sponsorData) {
+    fullScreenButton = document.getElementById("fullScreenButton");
+    fullScreenButton.onclick = fullScreenButtonOnClick;
+
     legendButton = document.getElementById("legendButton");
     legendPanel = document.getElementById("legendPanel");
     legendButton.onclick = legendButtonOnClick;
@@ -73,6 +145,8 @@ function initUI(lastModifiedFormatted) {
         helpButton.click();
         localStorage.setItem("gans_help_seen", "true");
     }
+
+    updateLegendTierCounts(sponsorData);
 }
 
 export { initUI };

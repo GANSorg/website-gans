@@ -26,9 +26,13 @@ html, body, #viewDiv {
     z-index: 100;
 }
 
+#fullScreenButton {
+    top: 90px;
+}
+
 arcgis-home {
     position: absolute;
-    top: 90px;
+    top: 130px;
     left: 15px;
     padding: 0px 0px 0px 0px;
     font-size: 7pt;
@@ -36,15 +40,15 @@ arcgis-home {
 }
 
 #sponsorListButton {
-    top: 130px;
-}
-
-#legendButton {
     top: 170px;
 }
 
-#helpButton {
+#legendButton {
     top: 210px;
+}
+
+#helpButton {
+    top: 250px;
 }
 
 .customButton {
@@ -101,6 +105,13 @@ arcgis-home {
     vertical-align: middle;
     margin-top: 2px;
     margin-bottom: 2px;
+}
+
+.tierRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 80px; 
 }
 
 .glowWrapper {

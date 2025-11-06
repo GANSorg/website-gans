@@ -15,7 +15,7 @@ async function initApp() {
         const csvText = await res.text();
         let allSponsorData = parseCSV(csvText); 
 
-        initUI(lastModifiedFormatted);
+        initUI(lastModifiedFormatted, allSponsorData);
         initializeMap(allSponsorData); 
     } catch (err) {
         alert("Failed to load sponsors. Please try again later.");

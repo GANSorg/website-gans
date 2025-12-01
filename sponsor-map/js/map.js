@@ -6,7 +6,7 @@ let markerSymbol = {
     size: 12,
     outline: {
         color: "#333",
-        width: 1.5
+        width: 2.5
     }
 };
 
@@ -14,9 +14,9 @@ let defaultLabelSymbol = {
     type: "text",
     color: "#333",
     haloColor: "#fff",
-    haloSize: "1px",
+    haloSize: "2px",
     font: {
-        size: 10,
+        size: 11,
         weight: "bold"
     },
     yoffset: 12,
@@ -25,7 +25,7 @@ let defaultLabelSymbol = {
 }
 
 const geoHex = "#996633";
-const silverHex = "#8c9aaa";
+const silverHex = "#A9C4D4";
 const goldHex = "#e6b800";
 const platinumHex = "#a5c6ff";
 
@@ -71,17 +71,18 @@ function generateTableFromSponsor(sponsor) {
                 <th scope="row" class="label">Website</th>
                 <td class="dataValue"><a href="${sponsor.Website}" target="_blank" aria-label="Visit ${sponsor.Sponsor} website">${sponsor.Website}</a></td>
             </tr>
-            <tr>
-                <th scope="row" class="label">Contact Info</th>
-                <td class="dataValue">${sponsor.ContactInfo || '—'}</td>
-            </tr>
-            <tr>
-                <th scope="row" class="label">Phone Number</th>
-                <td class="dataValue">${sponsor.PhoneNumber || '—'}</td>
-            </tr>
         </table>     
         <div style="text-align: center; margin-top:15px"><img src="${sponsor.LogoUrl}" alt="${sponsor.Sponsor} logo" style="max-height:80px;max-width:375px"  onerror="this.style.display='none';"/></div>
     `;
+        // Removing until this data is accurate. Needs to go under website.
+        // <tr>
+        //     <th scope="row" class="label">Contact Info</th>
+        //     <td class="dataValue">${sponsor.ContactInfo || '—'}</td>
+        // </tr>
+        // <tr>
+        //     <th scope="row" class="label">Phone Number</th>
+        //     <td class="dataValue">${sponsor.PhoneNumber || '—'}</td>
+        // </tr>
 }
 
 function loadSponsorsList() {
@@ -184,7 +185,8 @@ let allSponsorData;
 
 async function initializeMap(data) {
     allSponsorData = data;
-    const [Map, MapView, GraphicsLayer, Graphic, Point, reactiveUtils ] = await $arcgis.import([
+    const [Basemap, Map, MapView, GraphicsLayer, Graphic, Point, reactiveUtils ] = await $arcgis.import([
+        "@arcgis/core/Basemap.js",
         "esri/Map",
         "esri/views/MapView",
         "esri/layers/GraphicsLayer",
@@ -193,8 +195,14 @@ async function initializeMap(data) {
         "@arcgis/core/core/reactiveUtils.js"
     ]);
 
+    const communityBasemap = new Basemap({
+        portalItem: {
+            id: "14ba1969eb5545eeb8082f640aaf3c31"  
+        }
+    });
+
     const map = new Map({
-        basemap: "gray-vector"
+        basemap: communityBasemap
     });
 
     view = new MapView({
@@ -318,7 +326,7 @@ async function initializeMap(data) {
                 color: "#a5c6ff",  
                 outline: {
                     color: "black",
-                    width: 1.5
+                    width: 2.5
                 }
             };
 

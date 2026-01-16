@@ -66,23 +66,27 @@ function generateTableFromSponsor(sponsor) {
             <tr>
                 <th scope="row" class="label">Sponsorship Tier</th>
                 <td class="dataValue ${sponsorshipTierClass}">${sponsor.SponsorshipLevel || '—'}</td>
-            </tr>
+            </tr>` +
+        // Website
+            (sponsor.DisplayWebsite === "Y" ? `
             <tr>
                 <th scope="row" class="label">Website</th>
                 <td class="dataValue"><a href="${sponsor.Website}" target="_blank" aria-label="Visit ${sponsor.Sponsor} website">${sponsor.Website}</a></td>
-            </tr>
-        </table>     
+            </tr>` : ``) + 
+        // Email 
+            (sponsor.DisplayEmail === "Y" ? `
+            <tr>
+                <th scope="row" class="label">Contact Info</th>
+                <td class="dataValue">${sponsor.ContactInfo || '—'}</td>
+            </tr>` : ``) +
+        // Phone number
+            (sponsor.DisplayPhoneNumber === "Y" ? `
+            <th scope="row" class="label">Phone Number</th>
+                <td class="dataValue">${sponsor.PhoneNumber || '—'}</td>
+            </tr>` : ``) +
+        `</table>     
         <div style="text-align: center; margin-top:15px"><img src="${sponsor.LogoUrl}" alt="${sponsor.Sponsor} logo" style="max-height:80px;max-width:375px"  onerror="this.style.display='none';"/></div>
     `;
-        // Removing until this data is accurate. Needs to go under website.
-        // <tr>
-        //     <th scope="row" class="label">Contact Info</th>
-        //     <td class="dataValue">${sponsor.ContactInfo || '—'}</td>
-        // </tr>
-        // <tr>
-        //     <th scope="row" class="label">Phone Number</th>
-        //     <td class="dataValue">${sponsor.PhoneNumber || '—'}</td>
-        // </tr>
 }
 
 function loadSponsorsList() {

@@ -24,17 +24,8 @@ function makeIframeFullscreen() {
     const iframe = window.frameElement;
 
     if (iframe) {
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-        } else if (iframe.webkitRequestFullscreen) { 
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.mozRequestFullScreen) {
-            iframe.mozRequestFullScreen();
-        } else if (iframe.msRequestFullscreen) {
-            iframe.msRequestFullscreen();
-        } else {
-            alert("Could not expand.");
-        }
+        iframe.classList.add("fake-fullscreen");
+        document.body.classList.add("no-scroll");
     }
 }
 

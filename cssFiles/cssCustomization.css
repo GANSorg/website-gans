@@ -31,34 +31,34 @@ HTML > BODY {
 	text-shadow: 1px 1px #666;
 }
 
-.button:hover {
-	background-position: 0 -48px;
-}
+	.button:hover {
+		background-position: 0 -48px;
+	}
 
-.button:active {
-	background-position: 0 top;
-	position: relative;
-	top: 1px;
-	padding: 6px 10px 4px;
-}
+	.button:active {
+		background-position: 0 top;
+		position: relative;
+		top: 1px;
+		padding: 6px 10px 4px;
+	}
 
-.button.green {
-	background-color: #98b189;
-}
+	.button.green {
+		background-color: #98b189;
+	}
 
-.button.large {
-	font-size: 125%;
-	padding: 7px 12px;
-}
+	.button.large {
+		font-size: 125%;
+		padding: 7px 12px;
+	}
 
-.button.large:hover {
-	background-position: 0 -35px;
-}
+		.button.large:hover {
+			background-position: 0 -35px;
+		}
 
-.button.large:active {
-	padding: 8px 12px 6px;
-	background-position: 0 top;
-}
+		.button.large:active {
+			padding: 8px 12px 6px;
+			background-position: 0 top;
+		}
 /* ------------------------------------------------ */
 .myButton {
 	-moz-box-shadow: 0px 1px 3px 0px #91b8b3;
@@ -85,21 +85,21 @@ HTML > BODY {
 	text-decoration: none;
 }
 
-.myButton:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
-	background: -moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background: -webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background: -o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background: -ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
-	background-color: #98b189;
-}
+	.myButton:hover {
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+		background: -moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+		background: -webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+		background: -o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+		background: -ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+		background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+		background-color: #98b189;
+	}
 
-.myButton:active {
-	position: relative;
-	top: 1px;
-}
+	.myButton:active {
+		position: relative;
+		top: 1px;
+	}
 /* ------------------------------------------------ */
 
 
@@ -132,6 +132,21 @@ SPAN.postedByLink {
 	padding: 6px 9px 6px 9px !important;
 }
 
+.desktop-searchbox {
+	margin-right: 10px;
+}
+
+.searchBoxField {
+	border-radius: 10px !important;
+}
+
+.searchBoxFieldContainer:before {
+	top: 13px !important;
+}
+
+.mobile-searchbox {
+	display: none;
+}
 
 /* Mobile Portrait */
 @media only screen and (max-width: 767px) and (orientation: portrait) {
@@ -172,21 +187,21 @@ SPAN.postedByLink {
 		z-index: 1 !important;
 	}
 
-	.topLeftMenuGadget li {
-		font-size: 15px !important;
-	}
+		.topLeftMenuGadget li {
+			font-size: 15px !important;
+		}
 
-	.topLeftMenuGadget li a {
-		margin: 0 5px !important;
-	}
+			.topLeftMenuGadget li a {
+				margin: 0 5px !important;
+			}
 
-	.topLeftMenuGadget li::before {
-		display: none !important;
-	}
+			.topLeftMenuGadget li::before {
+				display: none !important;
+			}
 
-	.topLeftMenuGadget a {
-		color: white !important;
-	}
+		.topLeftMenuGadget a {
+			color: white !important;
+		}
 
 	.loginButtonGadget {
 		height: 36px !important;
@@ -194,9 +209,9 @@ SPAN.postedByLink {
 		margin-bottom: 5px !important;
 	}
 
-	.loginButtonGadget .loginBoxProfileLink, .loginButtonGadget .loginBoxChangePassword, .loginButtonGadget .loginBoxLogout {
-		font-weight: bold !important;
-	}
+		.loginButtonGadget .loginBoxProfileLink, .loginButtonGadget .loginBoxChangePassword, .loginButtonGadget .loginBoxLogout {
+			font-weight: bold !important;
+		}
 
 	.headerMenuGadget .menuButton {
 		width: 30px !important;
@@ -229,6 +244,14 @@ SPAN.postedByLink {
 	.searchBoxField {
 		width: 100% !important;
 	}
+
+	.desktop-searchbox {
+		display: none;
+	}
+
+	.mobile-searchbox {
+		display: block;
+	}
 }
 
 /* Mobile Landscape */
@@ -237,24 +260,37 @@ SPAN.postedByLink {
 	#id_DtrqapE > div > ul > li::before {
 		content: "";
 	}
+
 	#id_DtrqapE.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
+
 	#id_4CJKtJV > div > ul > li::before {
 		content: "";
 	}
+
 	#id_4CJKtJV.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
+
 	#id_dRjfpSd > div > ul > li::before {
 		content: "";
 	}
+
 	#id_dRjfpSd.WaGadgetCustomMenu.menuStyleNone .orientationHorizontal li a {
 		margin: 0px 5px;
 	}
 
 	.WaGadgetMenuHorizontal .menuInner ul.firstLevel > li.dir > .item > a > span:before {
 		display: none;
+	}
+
+	.desktop-searchbox {
+		display: none;
+	}
+
+	.mobile-searchbox {
+		display: block;
 	}
 }
 
@@ -277,30 +313,30 @@ SPAN.postedByLink {
 		margin-top: 25px !important;
 	}
 
-	#header-image-container img {
-		border-radius: 10px !important;
-	}
+		#header-image-container img {
+			border-radius: 10px !important;
+		}
 
 	.topLeftMenuGadget {
 		margin-left: 5px !important;
 	}
 
-	.topLeftMenuGadget li::before {
-		display: none !important;
-	}
+		.topLeftMenuGadget li::before {
+			display: none !important;
+		}
 
-	.topLeftMenuGadget li {
-		background-color: #00798c !important;
-		border-radius: 10px !important;
-		padding: 6px 9px 6px 9px !important;
-	}
+		.topLeftMenuGadget li {
+			background-color: #00798c !important;
+			border-radius: 10px !important;
+			padding: 6px 9px 6px 9px !important;
+		}
 
-	.topLeftMenuGadget li:hover {
-		background-color: #005e6e !important;
-	}
+			.topLeftMenuGadget li:hover {
+				background-color: #005e6e !important;
+			}
 
-	.topLeftMenuGadget li a {
-		color: #ffffff !important;
-		text-decoration: none !important;
-	}
+			.topLeftMenuGadget li a {
+				color: #ffffff !important;
+				text-decoration: none !important;
+			}
 }

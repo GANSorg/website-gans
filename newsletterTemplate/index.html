@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GANS Newsletter</title>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+p {
+    margin: 0px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #003366;
+}
+
+h2 {
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 14px
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+}
+
+header {
+    background: #e9eef4;
+    color: #003366;
+    border-bottom: 3px solid #003366;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+header img {
+    max-height: 150px;
+    background: none;
+    padding: 0;
+}
+
+header .title {
+    text-align: right;
+}
+
+section {
+    background: #f7f9fc;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    margin: 10px 15px 15px 15px;
+    border-radius: 10px;
+    box-shadow: 4px 3px 8px rgba(0,0,0,0.06);
+}
+
+section h2 {
+    color: #003366;
+    margin-top: 0;
+}
+
+.footer {
+    background: #222;
+    color: #ddd;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.footer h3 {
+  color: white;
+}
+
+.footer .columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer .column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.sponsors img {
+    max-height: 40px;
+    margin: 5px;
+}
+
+.no-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.no-bullets li {
+    margin-bottom: 5px;
+}
+
+.sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.sponsor-tier-name {
+    color: white;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.sponsor-tier-name.platinum {
+    margin-top: -15px;
+}
+
+.sponsor-tier-name.silver {
+    margin-top: 15px;
+}
+
+.sponsor-nl-logo {
+    width: 115px;
+    height: 70px;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sponsor-nl-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0px;
+}
+
+.silver-sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.silver-sponsors .sponsor-nl-logo {
+    flex: 0 0 calc(50% - 5px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    header .title {
+        text-align: left;
+    }
+
+    header h1 {
+        font-size: 20px;
+        margin: 10px 0 5px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    section h2 {
+        font-size: 18px;
+    }
+
+    .footer .columns {
+        flex-direction: column;
+    }
+
+    .container {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .footer .columns {
+        flex-direction: column;
+    }
+
+    .silver-sponsors {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .silver-sponsors .sponsor-nl-logo {
+        flex: 1 1 100%;
+    }
+
+    .sponsor-nl-logo {
+        height: 70px;
+    }
+
+    .sponsors {
+        align-items: center;
+    }
+
+    .column {
+        margin-bottom: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="https://gans.ca/resources/Pictures/logos/GANS-logo-tagline-transparent.png" alt="GANS Logo">
+            <div class="title">
+                <h1>Geomatics Association of Nova Scotia</h1>
+                <p>{Season} {Year} Newsletter</p>
+            </div>
+        </header>
+
+        <section>
+            <h2>President's Address</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut fermentum nunc. Suspendisse ac aliquet dolor, id laoreet ligula. Aenean hendrerit convallis lobortis. Duis non odio vel dui volutpat vestibulum. Aliquam viverra risus ornare, ultrices nunc id, dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus elementum nibh finibus vulputate a at leo.</p>
+        </section>
+
+        <section>
+            <h2>GANS Activity Update</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut fermentum nunc. Suspendisse ac aliquet dolor, id laoreet ligula. Aenean hendrerit convallis lobortis. Duis non odio vel dui volutpat vestibulum. Aliquam viverra risus ornare, ultrices nunc id, dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus elementum nibh finibus vulputate a at leo.</p>
+        </section>
+
+        <section>
+            <h2>Sponsor Highlight</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut fermentum nunc. Suspendisse ac aliquet dolor, id laoreet ligula. Aenean hendrerit convallis lobortis. Duis non odio vel dui volutpat vestibulum. Aliquam viverra risus ornare, ultrices nunc id, dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus elementum nibh finibus vulputate a at leo.</p>
+        </section>
+
+        <section>
+            <h2>Project Highlights</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut fermentum nunc. Suspendisse ac aliquet dolor, id laoreet ligula. Aenean hendrerit convallis lobortis. Duis non odio vel dui volutpat vestibulum. Aliquam viverra risus ornare, ultrices nunc id, dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus elementum nibh finibus vulputate a at leo.</p>
+        </section>
+
+        <section>
+            <h2>Upcoming Events</h2>
+            <ul>
+                <li>Event 1</li>
+                <li>Event 2</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Past Events</h2>
+            <ul>
+                <li>Name 1</li>
+                <li>Name 2</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Geomatics Updates Across Nova Scotia</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut fermentum nunc. Suspendisse ac aliquet dolor, id laoreet ligula. Aenean hendrerit convallis lobortis. Duis non odio vel dui volutpat vestibulum. Aliquam viverra risus ornare, ultrices nunc id, dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus elementum nibh finibus vulputate a at leo.</p>
+        </section>
+
+        <section>
+            <h2>Cool Tech / Spatial Data / NS Image</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut fermentum nunc. Suspendisse ac aliquet dolor, id laoreet ligula. Aenean hendrerit convallis lobortis. Duis non odio vel dui volutpat vestibulum. Aliquam viverra risus ornare, ultrices nunc id, dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a lacus elementum nibh finibus vulputate a at leo.</p>
+        </section>
+
+        <div class="footer">
+            <div class="columns">
+                <div class="column">
+                    <h3>Board of Directors</h3>
+                    <ul class="no-bullets">
+                        <li>Miranda Frison, <i>President</i></li>
+                        <li>Bradley Ashley, <i>Past President</i></li>
+                        <li>Vicki Gazzola</li>
+                        <li>Liam Gowan</li>
+                        <li>Dave MacLean, <i>Treasurer</i></li>
+                        <li>Aaron McGill</li>
+                        <li>Jeff McKenna</li>
+                        <li>Simeon Roberts</li>
+                    </ul>
+                    <br>
+                    <h3>Created by the Communications Committee</h3>
+                    <ul class="no-bullets">
+                        <li>Liam Gowan</li>
+                        <li>Daniel Jewell</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Contact Info</h3>
+                    <p>Email: <img src="https://gans.ca/resources/images/GANS-contact-email_cropped.png" alt="GANS Email" width="150"></p>
+                    <p>Website: <a href="https://gans.ca" target="_blank" style="color: cadetblue;">gans.ca</a></p>
+                    <p>PO Box: 961, Halifax, NS, B3J 2V9</p>
+                </div>
+                <div class="column sponsors">
+                    <h3>Sponsors</h3>
+                    <h4 class="sponsor-tier-name platinum">Platinum Sponsors</h4>
+                    <div class="sponsors platinum-sponsors">
+                        <div class="sponsor-nl-logo" title="Province of Nova Scotia" aria-label="Province of Nova Scotia">
+                            <a href="https://novascotia.ca/sns/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-nl-logos/nsflag_colour.png" alt="Province of Nova Scotia">
+                            </a>
+                        </div>
+                    </div>
+
+                    <h4 class="sponsor-tier-name silver">Silver Sponsors</h4>
+                    <div class="sponsors silver-sponsors">
+                        <div class="sponsor-nl-logo" title="CBCL" aria-label="CBCL">
+                            <a href="https://www.cbcl.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-nl-logos/CBCL_Logo_BLK_Jul2021_275x150.jpg" alt="CBCL" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="COGS" aria-label="COGS">
+                            <a href="https://nscc.ca/COGS" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/Resources/images/sponsor-nl-logos/cogs-hoz-jpg_cropped.jpg" alt="COGS" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Esri Canada" aria-label="Esri Canada">
+                            <a href="https://www.esri.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/Resources/images/sponsor-nl-logos/logo-275x150-esri-canada.jpg" alt="Esri Canada" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Gateway Geo" aria-label="Gateway Geo">
+                            <a href="https://www.gatewaygeomatics.com/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/Pictures/logos/logo-275x150-GatewayGeoFeb2021.png" alt="Gateway Geo" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Halifax Water" aria-label="Halifax Water">
+                            <a href="https://www.halifaxwater.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/Resources/images/sponsor-nl-logos/logo-275x150-halifax-water.jpg" alt="Halifax Water" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="MapDev Technology Solutions, Inc." aria-label="MapDev Technology Solutions, Inc.">
+                            <a href="https://www.mapdev.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-nl-logos/MapDev_logoJul2021_275x150.jpg" alt="MapDev Technology Solutions, Inc." loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Turner Drake & Partners Ltd." aria-label="Turner Drake & Partners Ltd.">
+                            <a href="https://www.turnerdrake.com/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-nl-logos/logo-Turner-Drake.jpg" alt="Turner Drake & Partners Ltd." loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>© Geomatics Association of Nova Scotia (GANS)</p>
+        </div>
+    </div>
+</body>
+</html>

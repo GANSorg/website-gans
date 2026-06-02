@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GANS Spring 2026 Newsletter</title>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+p {
+    margin: 0px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #003366;
+}
+
+h2 {
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 14px
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+}
+
+header {
+    background: #e9eef4;
+    color: #003366;
+    border-bottom: 3px solid #003366;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+header img {
+    max-height: 150px;
+    background: none;
+    padding: 0;
+}
+
+header .title {
+    text-align: right;
+}
+
+.top-nav {
+    background: #003366;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 10px 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.top-nav a:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+section {
+    background: #f7f9fc;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    margin: 10px 15px 15px 15px;
+    border-radius: 10px;
+    box-shadow: 4px 3px 8px rgba(0,0,0,0.06);
+}
+
+section h2 {
+    color: #003366;
+    margin-top: 0;
+}
+
+.footer {
+    background: #222;
+    color: #ddd;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.footer h3 {
+  color: white;
+}
+
+.footer .columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer .column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.sponsors img {
+    max-height: 40px;
+    margin: 5px;
+}
+
+.no-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.no-bullets li {
+    margin-bottom: 5px;
+}
+
+.sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.sponsor-tier-name {
+    color: white;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.sponsor-tier-name.platinum {
+    margin-top: -15px;
+}
+
+.sponsor-tier-name.silver {
+    margin-top: 15px;
+}
+
+.sponsor-nl-logo {
+    width: 115px;
+    height: 70px;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sponsor-nl-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0px;
+}
+
+.silver-sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.silver-sponsors .sponsor-nl-logo {
+    flex: 0 0 calc(50% - 5px);
+    box-sizing: border-box;
+}
+
+.image-gallery {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-gallery img {
+    height: 200px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.03);
+}
+
+.image-gallery figure {
+    margin: 0;
+    text-align: center;
+}
+
+.image-gallery figcaption {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+    max-width: 250px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    header .title {
+        text-align: left;
+    }
+
+    header h1 {
+        font-size: 20px;
+        margin: 10px 0 5px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    section h2 {
+        font-size: 18px;
+    }
+
+    .footer .columns {
+        flex-direction: column;
+    }
+
+    .container {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .footer .columns {
+        flex-direction: column;
+    }
+
+    .silver-sponsors {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .silver-sponsors .sponsor-nl-logo {
+        flex: 1 1 100%;
+    }
+
+    .sponsor-nl-logo {
+        height: 70px;
+    }
+
+    .sponsors {
+        align-items: center;
+    }
+
+    .column {
+        margin-bottom: 20px;
+    }
+}
+
+</style>
+</head>
+<script>
+    function openImage(src) {
+        document.getElementById("modalImage").src = src;
+        document.getElementById("imageModal").style.display = "flex";
+    }
+
+    function closeImage() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+</script>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="https://gans.ca/resources/Pictures/logos/GANS-logo-tagline-transparent.png" alt="GANS Logo">
+            <div class="title">
+                <h1>Geomatics Association of Nova Scotia</h1>
+                <p>Spring 2026 Newsletter</p>
+            </div>
+        </header>
+
+        <nav class="top-nav">
+            <a href="#presidents-address">President's Address</a>
+            <a href="#agm">AGM</a>
+            <a href="#future-strategy">Future Strategy</a>
+            <a href="#website-updates">Website Updates</a>
+            <a href="#social-spotlight">Social Spotlight</a>
+            <a href="#events">Events</a>
+            <a href="#sponsors">Sponsors</a>
+        </nav>
+
+        <section id="presidents-address">
+            <h2>President's Address</h2>
+            <p>The focus of GANS this past year has been creating the Future Strategy Committee. More
+                information regarding this committee can be found further in this newsletter thanks to our Co-
+                Chairs (Simeon Roberts, Brad Ashley). An additional huge thank-you to all of you that attended
+                our 2025 Strategic Session last March and those that have dedicated their time to the Committee.
+            </p></br>
+            <p>As always, GIS Day was a blast (pun intended)! We held a hybrid lecture at Saint Mary’s
+                University, with presentations by Jean Bergeron and Dirk Werle of the Canadian Space Agency.
+                The university <a href="https://news.smu.ca/news/2026/1/6/celebrating-50-years-of-geography-and-environmental-studies" target="_blank">mentioned GANS</a> as part of the 50th anniversary of their Geography and
+                Environmental Studies Department.
+            </p></br>
+            <div class="image-gallery">
+                <figure>
+                    <img src="images/smu-GIS-Day.jpg" alt="Photo provided by Saint Mary’s University"
+                        onclick="openImage(this.src)">
+                        <figcaption>Photo provided by Saint Mary’s University</figcaption>
+                </figure>
+            </div></br>
+            <p>
+                Thank you to our <a href="https://www.gans.ca/about/board" target="_blank">Board of Directors</a>, who volunteer their time to promote geomatics in Atlantic Canada. If you are interested in becoming a Director, please <a href="https://www.gans.ca/contact-us">reach out</a> and attend our <a href="https://www.gans.ca/event-6705227">Annual General Meeting</a> on June 25, 2026.    
+            </p></br>
+            <p>
+                Until then, wishing you all well from NAD83 UTM Zone 20N!
+            </p></br>
+
+            <span>
+                <b>Miranda Frison</b>
+            </span></br>
+            <span>
+                President | Geomatics Association of Nova Scotia (GANS)
+            </span></br>
+            <img src="images/gans-logo-ns.png" style="height: 150px;"/>
+        </section>
+
+        <section id="agm">
+            <h2>2026 GANS Annual General Meeting</h2>
+            <p>The 2026 GANS Annual General Meeting is approaching! Please join us <b>Thursday, June 25th</b>, from <b>2:00–4:00 PM</b> at the Halifax Central Library (Room 301), located at 5440 Spring Garden Road, Halifax. </p><br/>
+            <p>Room 301 can be accessed via elevator or stairs. Upon reaching the third floor, turn right and continue to the opposite end of the floor.</p><br/>
+            <p>The meeting will feature speakers from GANS and our industry sponsors, followed by a social event afterward (details to be announced). </p><br/>
+            <p>Registration is free and open to GANS members only. We hope to see you there! </p><br/>
+            <p>Register here: <a href="https://gans.ca/event-6705227/" target="_blank">https://gans.ca/event-6705227/</a></p>
+
+            <div class="image-gallery">
+                <figure>
+                    <img src="images/2025-agm.jpg" alt="2025 GANS AGM"
+                        onclick="openImage(this.src)">
+                        <figcaption>2025 GANS AGM</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="future-strategy">
+            <h2>GANS Future Strategy Committee Update</h2>
+            <p>Following the 2025 Strategic Session at Inn on the Lake, the GANS Board of Directors established the GANS Future Strategy Committee to consider the future direction of the association and how it can continue to support Nova Scotia’s geomatics community in a meaningful and sustainable way.</p><br/>
+            <p>The committee was formed at an important point in GANS’ history. The geomatics profession continues to grow in importance across infrastructure, land management, planning, emergency response, utilities, environmental work, digital transformation, and many other areas of Nova Scotia’s economy. At the same time, volunteer-led organizations like GANS must be realistic about capacity, funding, participation, and the level of effort required to deliver lasting value to members, sponsors, students, and the broader community.</p><br/>
+            <p>The committee brings together volunteers from across the geomatics community, including representatives from private industry, government, academia, students, and early-career professionals. Its work has been organized into three focused groups: Education, Professional Development and Events; Industry Advancement, Alliances and Community Building; and Membership, Sponsorship and Funding.</p><br/>
+            <p>Together, these groups have examined how GANS can rebuild visibility, strengthen community engagement, support professional development, expand networking opportunities, connect with students and emerging professionals, and explore realistic models for long-term sustainability. A central theme of this work has been balancing opportunity with capacity—recognizing that while many paths forward exist, success will depend on approaches that are practical, focused, and achievable.</p><br/>
+            <p>The role of the Future Strategy Committee is to provide the Board with clear recommendations for the organization’s next stage. The committee’s final report and recommendations are expected to be submitted to the GANS Board in early June, with the goal of presenting high-level findings to the membership at the upcoming AGM.</p><br/>
+            <p><b>Co-Chairs of the GANS Future Strategy Committee</b></p>
+            <p><i>Simeon Roberts</i></p>
+            <p><i>Brad Ashley</i></p>
+        </section>
+
+        <section id="website-updates">
+            <h2>Organization Website Updates</h2>
+            <p>The GANS organization website (<a href="https://gans.ca" target="_blank">www.gans.ca</a>) has been updated to improve usability, accessibility, and overall user experience across a range of devices. Updates include a more modern interface, mobile compatibility, and general cleanup to ensure the layout remains current and easy to navigate.</p><br/>
+            <p>Key improvements include:</p>
+            <ul>
+                <li>Improved mobile experience</li>
+                <li>Refined visual design, including improved styling and interface elements</li>
+                <li>Removal of outdated content, use of updated iconography</li>
+                <li>Enhanced sponsor footer, organized by tier and responsive</li>
+            </ul>
+            <p>In addition to the above, a new interactive Sponsor Map (<a href="https://gans.ca/sponsor-map" target="_blank">https://gans.ca/sponsor-map</a>) has been launched to showcase GANS sponsors across Nova Scotia. This tool allows users to explore sponsor locations and view detailed information.</p><br/>
+            <p>We hope that this provides a more engaging way for us to recognize our sponsors, while offering members an intuitive way to explore the organizations supporting GANS.</p>
+            <div class="image-gallery">
+                <figure>
+                    <img src="images/gans-mobile-site.png" alt="GANS website redesign optimized for mobile devices."
+                        onclick="openImage(this.src)">
+                    <figcaption>GANS website redesign optimized for mobile devices.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/sponsor-map.png" alt="Interactive Sponsor Map showcasing organizations supporting GANS."
+                        onclick="openImage(this.src)">
+                    <figcaption>Interactive Sponsor Map showcasing organizations supporting GANS.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="social-spotlight">
+            <h2>GANS Social Spotlight</h2>
+            <p>We've launched the GANS Social Spotlight! Each week, we're highlighting members of Nova Scotia's geomatics community on <a href="https://www.linkedin.com/company/geomatics-association-of-nova-scotia" target="_blank">our LinkedIn page</a> sharing their experiences, career paths, and projects.</p></br>
+            <p>Anyone working or studying (including recent graduates!) in the geomatics field within Nova Scotia is welcome to be featured.</p></br>
+            <p>Interested in being featured? Please visit: <a href="https://gans.ca/gans-social-spotlight" target="_blank">https://gans.ca/gans-social-spotlight</a></p>
+        
+            <div class="image-gallery">
+                <figure>
+                    <img src="images/social-spotlight-screenshot.png" alt="Social Spotlight post featuring Darren MacKinnon."
+                        onclick="openImage(this.src)">
+                    <figcaption>Social Spotlight post featuring Darren MacKinnon.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events</h2>
+            <ul>
+                <li>2026 GANS AGM - June 25, 2026, Halifax Central Library - <a href="https://gans.ca/event-6705227/" target="_blank">Register Here!</a></li>
+                <li>International Society for Photogrammetry and Remote Sensing - July 4-11, 2026, Toronto - <a href="https://www.isprs2026toronto.com/" target="_blank">Register Here!</a></li>                
+                <li>2026 Esri User Conference Watch Party - July 13, 2026 - <a href="https://events.esri.ca/WP-26JUL13-MULTICITY-ESRIUC/?utm_source=linkedin&utm_medium=social&utm_campaign=esriuc-2026&adusf=linkedin&aduc=esri+canada&adut=93596663-72d0-431f-9d52-6df115d580ad&adumkts=social&utm_source=social&aduc=social&adum=external&adusf=linkedin&sf_id=7015x000000aYlKAAU&aduca=mi_employee_advocacy_hootsuite_amplify_soc_ex&adut=2d2a7533-b6a2-4650-acc3-166745d3970a" target="_blank">Register Here!</a></li>
+                <li>Esri Canada User Conference - October 21-22, 2026, Toronto - <a href="https://www.esri.ca/en-ca/news-events/events/uc/2026/esricanada-uc/overview" target="_blank">Details Here!</a></li>
+                <li>Canada’s National GoGeomatics Expo - October 26-28, 2026, Calgary <a href="https://gogeomaticsexpo.com/" target="_blank">Register Here!</a></li>
+            </ul>
+        </section>
+
+        <section id="sponsors">
+            <h2>Sponsor Highlights</h2>
+            <img src="https://gans.ca/resources/images/sponsor-logos/logo-Turner-Drake.jpg" alt="Turner Drake & Partners Ltd." loading="lazy">
+            <p><a href="https://www.turnerdrake.com/" target="_blank">Turner Drake & Partners Ltd.</a> recently supported the Town of Wolfville's municipal planning initiatives through a spatial analysis of municipal property tax revenue density. This project was undertaken to better understand the financial value of different land uses and development patterns across Wolfville. By calculating appropriate tax levies for all taxable property parcels (i.e., commercial, residential, etc., while excluding Acadia University, the nearby hospital, and Town-owned lands), they were able to derive tax revenue density (revenue per unit of land).</p></br>
+            <p>The resulting dataset helped inform decisions related to rezoning and updates to their municipal planning strategy. To further support analysis and communication of the findings, Turner Drake & Partners Ltd. also produced 3D visualizations (pictured below) showing applicable properties in Wolfville, with the elevation of each property representing its tax revenue per square metre. </p>
+            <div class="image-gallery">
+                <figure>
+                    <img src="images/turnerDrakeImage1.png" alt="Property Tax Revenue per Square Metre"
+                        onclick="openImage(this.src)">
+                        <figcaption>Property Tax Revenue per Square Metre</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/turnerDrakeImage2.png" alt="Revenue Density and Zoning"
+                         onclick="openImage(this.src)">
+                    <figcaption>Revenue Density and Zoning</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <div class="footer">
+            <div class="columns">
+                <div class="column">
+                    <h3>Board of Directors</h3>
+                    <ul class="no-bullets">
+                        <li>Miranda Frison, <i>President</i></li>
+                        <li>Bradley Ashley, <i>Past President</i></li>
+                        <li>Vicki Gazzola</li>
+                        <li>Liam Gowan</li>
+                        <li>Dave MacLean, <i>Treasurer</i></li>
+                        <li>Aaron McGill</li>
+                        <li>Jeff McKenna</li>
+                        <li>Simeon Roberts</li>
+                    </ul>
+                    <br>
+                    <h3>Created by the Communications Committee</h3>
+                    <ul class="no-bullets">
+                        <li>Liam Gowan</li>
+                        <li>Daniel Jewell</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Contact Info</h3>
+                    <p>Email: <img src="https://gans.ca/resources/images/GANS-contact-email_cropped.png" alt="GANS Email" width="150"></p>
+                    <p>Website: <a href="https://gans.ca" target="_blank" style="color: cadetblue;">gans.ca</a></p>
+                    <p>PO Box: 961, Halifax, NS, B3J 2V9</p>
+                </div>
+                <div class="column sponsors">
+                    <h3>Sponsors</h3>
+                    <h4 class="sponsor-tier-name platinum">Platinum Sponsors</h4>
+                    <div class="sponsors platinum-sponsors">
+                        <div class="sponsor-nl-logo" title="Province of Nova Scotia" aria-label="Province of Nova Scotia">
+                            <a href="https://novascotia.ca/sns/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/nsflag_colour.png" alt="Province of Nova Scotia">
+                            </a>
+                        </div>
+                    </div>
+
+                    <h4 class="sponsor-tier-name silver">Silver Sponsors</h4>
+                    <div class="sponsors silver-sponsors">
+                        <div class="sponsor-nl-logo" title="CBCL" aria-label="CBCL">
+                            <a href="https://www.cbcl.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/CBCL_Logo_BLK_Jul2021_275x150.jpg" alt="CBCL" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="COGS" aria-label="COGS">
+                            <a href="https://nscc.ca/COGS" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/cogs-hoz-jpg_cropped.jpg" alt="COGS" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Esri Canada" aria-label="Esri Canada">
+                            <a href="https://www.esri.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/logo-275x150-esri-canada.jpg" alt="Esri Canada" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Gateway Geo" aria-label="Gateway Geo">
+                            <a href="https://www.gatewaygeomatics.com/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/Pictures/logos/logo-275x150-GatewayGeoFeb2021.png" alt="Gateway Geo" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Halifax Water" aria-label="Halifax Water">
+                            <a href="https://www.halifaxwater.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/logo-275x150-halifax-water.jpg" alt="Halifax Water" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="MapDev Technology Solutions, Inc." aria-label="MapDev Technology Solutions, Inc.">
+                            <a href="https://www.mapdev.ca" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/MapDev_logoJul2021_275x150.jpg" alt="MapDev Technology Solutions, Inc." loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="sponsor-nl-logo" title="Turner Drake & Partners Ltd." aria-label="Turner Drake & Partners Ltd.">
+                            <a href="https://www.turnerdrake.com/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://gans.ca/resources/images/sponsor-logos/logo-Turner-Drake.jpg" alt="Turner Drake & Partners Ltd." loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>© Geomatics Association of Nova Scotia (GANS)</p>
+        </div>
+    </div>
+    <div id="imageModal" class="modal" onclick="closeImage()">
+        <span class="close-modal" onclick="closeImage()">&times;</span>
+        <img id="modalImage">
+    </div>
+</body>
+</html>
